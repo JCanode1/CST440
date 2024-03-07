@@ -1,0 +1,308 @@
+{
+  "version": "1.3.0-beta.0",
+  "graph": {
+    "nodes": [
+      {
+        "id": "n0",
+        "position": {
+          "x": 0,
+          "y": 0
+        },
+        "caption": "DOI"
+      },
+      {
+        "id": "n1",
+        "position": {
+          "x": 0,
+          "y": 300
+        },
+        "caption": "Ref"
+      },
+      {
+        "id": "n2",
+        "position": {
+          "x": 300,
+          "y": 0
+        },
+        "caption": "Author"
+      }
+    ],
+    "relationships": [
+      {
+        "id": "n0",
+        "type": "has author",
+        "fromId": "n0",
+        "toId": "n2"
+      },
+      {
+        "id": "n1",
+        "type": "has ref",
+        "fromId": "n0",
+        "toId": "n1"
+      }
+    ]
+  },
+  "dataModel": {
+    "version": "1.3.0-beta.0",
+    "graphSchemaRepresentation": {
+      "version": "1.0.0",
+      "graphSchema": {
+        "nodeLabels": [
+          {
+            "$id": "nl:n0",
+            "token": "DOI",
+            "properties": [
+              {
+                "$id": "p:1",
+                "token": "DOI",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:n1",
+            "token": "Ref",
+            "properties": [
+              {
+                "$id": "p:2",
+                "token": "Reference",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          },
+          {
+            "$id": "nl:n2",
+            "token": "Author",
+            "properties": [
+              {
+                "$id": "p:3",
+                "token": "Author",
+                "type": {
+                  "type": "string"
+                },
+                "nullable": true
+              }
+            ]
+          }
+        ],
+        "nodeObjectTypes": [
+          {
+            "$id": "n:n0",
+            "labels": [
+              {
+                "$ref": "#nl:n0"
+              }
+            ]
+          },
+          {
+            "$id": "n:n1",
+            "labels": [
+              {
+                "$ref": "#nl:n1"
+              }
+            ]
+          },
+          {
+            "$id": "n:n2",
+            "labels": [
+              {
+                "$ref": "#nl:n2"
+              }
+            ]
+          }
+        ],
+        "relationshipTypes": [
+          {
+            "$id": "rt:n0",
+            "token": "has author",
+            "properties": []
+          },
+          {
+            "$id": "rt:n1",
+            "token": "has ref",
+            "properties": []
+          }
+        ],
+        "relationshipObjectTypes": [
+          {
+            "$id": "r:n0",
+            "type": {
+              "$ref": "#rt:n0"
+            },
+            "from": {
+              "$ref": "#n:n0"
+            },
+            "to": {
+              "$ref": "#n:n2"
+            }
+          },
+          {
+            "$id": "r:n1",
+            "type": {
+              "$ref": "#rt:n1"
+            },
+            "from": {
+              "$ref": "#n:n0"
+            },
+            "to": {
+              "$ref": "#n:n1"
+            }
+          }
+        ],
+        "indexes": [],
+        "constraints": []
+      }
+    },
+    "graphSchemaExtensionsRepresentation": {
+      "nodeKeyProperties": [
+        {
+          "node": {
+            "$ref": "#n:n0"
+          },
+          "keyProperty": {
+            "$ref": "#p:1"
+          }
+        },
+        {
+          "node": {
+            "$ref": "#n:n1"
+          },
+          "keyProperty": {
+            "$ref": "#p:2"
+          }
+        },
+        {
+          "node": {
+            "$ref": "#n:n2"
+          },
+          "keyProperty": {
+            "$ref": "#p:3"
+          }
+        }
+      ]
+    },
+    "graphMappingRepresentation": {
+      "dataSourceSchema": {
+        "type": "local/csv",
+        "tableSchemas": [
+          {
+            "$id": "t:2",
+            "name": "data.csv",
+            "expanded": false,
+            "fields": [
+              {
+                "name": "DOI",
+                "type": "string",
+                "sample": "10.1136/bmj.b2680",
+                "include": true
+              },
+              {
+                "name": "Author",
+                "type": "string",
+                "sample": "'Greenberg S. A'",
+                "include": true
+              },
+              {
+                "name": "Reference",
+                "type": "string",
+                "sample": "7855331",
+                "include": true
+              }
+            ]
+          }
+        ]
+      },
+      "nodeMappings": [
+        {
+          "node": {
+            "$ref": "#n:n0"
+          },
+          "tableSchema": {
+            "$ref": "#t:2"
+          },
+          "propertyMappings": [
+            {
+              "fieldName": "DOI",
+              "property": {
+                "$ref": "#p:1"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:n1"
+          },
+          "tableSchema": {
+            "$ref": "#t:2"
+          },
+          "propertyMappings": [
+            {
+              "fieldName": "Reference",
+              "property": {
+                "$ref": "#p:2"
+              }
+            }
+          ]
+        },
+        {
+          "node": {
+            "$ref": "#n:n2"
+          },
+          "tableSchema": {
+            "$ref": "#t:2"
+          },
+          "propertyMappings": [
+            {
+              "fieldName": "Author",
+              "property": {
+                "$ref": "#p:3"
+              }
+            }
+          ]
+        }
+      ],
+      "relationshipMappings": [
+        {
+          "relationship": {
+            "$ref": "#r:n0"
+          },
+          "tableSchema": {
+            "$ref": "#t:2"
+          },
+          "propertyMappings": [],
+          "fromMapping": {
+            "fieldName": "DOI"
+          },
+          "toMapping": {
+            "fieldName": "Author"
+          }
+        },
+        {
+          "relationship": {
+            "$ref": "#r:n1"
+          },
+          "tableSchema": {
+            "$ref": "#t:2"
+          },
+          "propertyMappings": [],
+          "fromMapping": {
+            "fieldName": "DOI"
+          },
+          "toMapping": {
+            "fieldName": "Reference"
+          }
+        }
+      ]
+    },
+    "configurations": {
+      "idsToIgnore": []
+    }
+  }
+}
