@@ -26,8 +26,7 @@ def process_data(input_file, output_file):
                 writer.writerow([doi, author.strip(), reference.strip()])
 
 
-"""
-input_file = "testDataSet.csv" 
+
+input_file = "test.csv" 
 output_file = "output.csv"  
 process_data(input_file, output_file)
-"""
